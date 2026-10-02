@@ -149,6 +149,10 @@ def gate(items: list, verdicts: dict, corpus: str) -> list:
             missing = g["missing"]
             if missing:
                 reasons.append(f"ungrounded tokens: {missing}")
+            # FIX (run 3): answers said "The corpus describes it as..." - pipeline jargon leaking
+            # into page copy a visitor would read. Publishable text must not mention its sources.
+            if re.search(r"\b(corpus|the site lists|the draft)\b", it["text"], re.I):
+                reasons.append("meta-language in publishable copy (mentions the corpus)")
             if not it.get("evidence"):  # from the Codex red-team review: empty evidence used to pass
                 reasons.append("no evidence quotes for a non-gap answer")
             for q in it.get("evidence", []):

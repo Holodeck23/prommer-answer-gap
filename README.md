@@ -9,7 +9,7 @@ prommer.net exists to win two audiences: founders/operators evaluating Thomas Pr
 - `sitemap.xml` is a sitemap **index** → 1 child → **476 URLs**. `robots.txt` and `llms.txt` present.
 - Homepage JSON-LD has 21 types (Person, Organization, PodcastSeries, VideoObject…) but **no `FAQPage`** and no `dateModified`.
 - `llms.txt` points machines at `/en/press/`, which is a **meta-refresh stub (78 chars of text)**. A crawler that doesn't follow meta-refresh sees nothing there.
-- Final run (`runs/20261002-091012/`): 11 pages frozen (51k chars), **5 of 6 answers published, 1 held as a real gap**. Planted fake stat and fake expert: **both held**. Cost: draft 27.0s / $0.26, verify 15.5s / $0.25.
+- Final run (`runs/20261002-091252/`): 11 pages frozen (51k chars). **4 of 6 answers published, 1 held after its repair round, 1 held as a real content gap.** Planted fake stat and fake expert: **both held**. Four model calls (draft, verify, repair, re-verify), all timed and costed in the run folder.
 
 **The finding that matters:** the question *"Has he appeared on podcasts or spoken publicly, and on what topics?"* cannot be answered from the site. The press page lists coverage (Business Insider, HotTopics, Fast Company) but not appearances or talk topics. That is precisely what a podcast booker, one of the two named target audiences, needs. Fix pack: a `/speaking` page with appearances + topics, then add it to `llms.txt` and the FAQ.
 
@@ -17,9 +17,9 @@ prommer.net exists to win two audiences: founders/operators evaluating Thomas Pr
 
 ```bash
 python3 pipeline.py                               # live: fetch, 2 model calls, gate, publish
-python3 pipeline.py --replay runs/20261002-091012 # re-gate recorded responses, zero model calls
-python3 grounding_gate.py --corpus runs/20261002-091012/corpus \
-  --draft runs/20261002-091012/published-items.json --negative-control
+python3 pipeline.py --replay runs/20261002-091252 # re-gate recorded responses, zero model calls
+python3 grounding_gate.py --corpus runs/20261002-091252/corpus \
+  --draft runs/20261002-091252/published-items.json --negative-control
 ```
 Needs `python3` (stdlib only) and the `claude` CLI (`claude -p`, Sonnet 5.5) for the two agent steps.
 
@@ -42,6 +42,8 @@ Every prompt, response, token count, cost and timing is saved in `runs/<ts>/{dra
 2. **Run 2: the negative control FAILED.** A planted "4.3x more citations" passed the grounding gate. Cause: the gate used substring containment, and the homepage carries a fitness log (`34.3`, `94.3 kg`), so `4.3` "was in the corpus". **Fix:** claims must match as whole tokens, units included (`4.3x`). Re-run: both planted claims held. (`runs/20261002-090834/negative-control.txt` is the failing output, kept on purpose; `negative-control-after-fix.txt` is the pass.)
 3. **The press page was empty.** `llms.txt` → `/en/press/` is a 78-char meta-refresh stub. **Fix:** follow one meta-refresh hop and record it in `measure.json`. That's also a real finding for the site, since llms.txt should point at the final URL.
 4. **From an independent review:** a Codex session (a different model family) red-teamed the gate read-only over a local message bus. It found that a non-gap answer with an **empty evidence array** could pass. Fixed: one line in `gate()`. Its other findings are listed below as limits, because I didn't have time to fix them.
+
+5. **Run 3 published copy that said "The corpus describes it as…".** Every fact was grounded, but nobody would put that sentence on a homepage. Grounded is not the same as publishable. **Fix:** a gate rule that rejects meta-language. Run 4: the repair round rewrote some answers, q4 still leaked the word after its one repair, so it was **held**, as designed. One repair, then hold; never loop until the model says what the gate wants.
 
 ## Limits (honest)
 

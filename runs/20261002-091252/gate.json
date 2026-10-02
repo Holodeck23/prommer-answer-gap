@@ -1,0 +1,80 @@
+[
+  {
+    "id": "q1",
+    "question": "Who is Thomas Prommer and what does he do?",
+    "text": "Thomas Prommer is a technology and AI advisor and hybrid athlete with more than 20 years of experience leading engineering and technology strategy. He previously served as Global SVP of Engineering at Adidas, Chief Information Officer at Sweetgreen, and President, Technology at Huge. He founded We The Flywheel, where he advises leaders on AI strategy, platform engineering, digital transformation, and technology due diligence.",
+    "evidence": [
+      "Thomas Prommer is a technology and AI advisor and hybrid athlete with more than 20 years of experience leading engineering and technology strategy.",
+      "He has served as Global SVP of Engineering at Adidas, Chief Information Officer at Sweetgreen, and President, Technology at Huge.",
+      "He founded We The Flywheel, where he advises leaders on AI strategy, platform engineering, digital transformation, and technology due diligence."
+    ],
+    "gap": false,
+    "pass": true,
+    "reasons": []
+  },
+  {
+    "id": "q2",
+    "question": "What is We The Flywheel?",
+    "text": "We The Flywheel is a global sports media network, AI consultancy, and product studio, which Thomas Prommer founded and leads as Group CEO. It is also described as an agentic-led, AI-first digital product and consulting studio. Flywheel Motion is one of its products.",
+    "evidence": [
+      "Group CEO of We The Flywheel \u2014 a global sports media network, AI consultancy, and product studio",
+      "the agentic-led, AI-first digital product and consulting studio I'm part of",
+      "Flywheel Motion is one product from We The Flywheel"
+    ],
+    "gap": false,
+    "pass": true,
+    "reasons": []
+  },
+  {
+    "id": "q3",
+    "question": "What is Thomas Prommer's point of view on agentic or AI-native operations?",
+    "text": "He treats AI as a production system with a human in the loop. Agents do the heavy lifting and people own the judgment. Every use of AI must have a measurable outcome. He also argues for crediting outcomes over tools, and for embedded AI squads instead of a central Center of Excellence.",
+    "evidence": [
+      "Agents do the heavy lifting. People own the judgment.",
+      "Production-first. It runs in live environments, not demos. Human-in-the-loop. AI helps the decision. It doesn't make it. Measurable outcomes. Every use has a number attached, or it doesn't ship.",
+      "embedded AI squads replacing a central Center of Excellence"
+    ],
+    "gap": false,
+    "pass": true,
+    "reasons": []
+  },
+  {
+    "id": "q4",
+    "question": "Which AI products and content properties does he run?",
+    "text": "The corpus names Flywheel Motion, which uses AI to raise the visibility of people doing real work and is one product of We The Flywheel. It also names ctaio.dev, a community for technology leadership where he is founder, and Ask AI Tom, which gives answers grounded in his published writing. A podcast, CTAIO Labs Podcast, is listed as well.",
+    "evidence": [
+      "Flywheel Motion is one product from We The Flywheel",
+      "Founder at ctaio.dev Community for next-gen technology leadership",
+      "Ask AI Tom \u2014 grounded answers from Thomas Prommer's published writing"
+    ],
+    "gap": false,
+    "pass": false,
+    "reasons": [
+      "meta-language in publishable copy (mentions the corpus)"
+    ]
+  },
+  {
+    "id": "q5",
+    "question": "Has he appeared on podcasts or spoken publicly, and on what topics?",
+    "text": "",
+    "evidence": [],
+    "gap": true,
+    "pass": false,
+    "reasons": [
+      "gap: site does not answer this"
+    ]
+  },
+  {
+    "id": "q6",
+    "question": "How can a founder or a podcast booker contact or book him?",
+    "text": "Use the contact form on prommer.net, which has inquiry types including Speaking Engagement, Press & Media and Partnership Opportunity. He can also be reached on LinkedIn. For interviews, speaking engagements, or press inquiries, the press page says to reach out directly. A 60-minute advisory call can also be booked.",
+    "evidence": [
+      "Reach Thomas through the contact form or on LinkedIn",
+      "For interviews, speaking engagements, or press inquiries, reach out directly.",
+      "Book a 60-minute technology advisory call."
+    ],
+    "gap": false,
+    "pass": true,
+    "reasons": []
+  }
+]
