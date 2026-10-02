@@ -9,14 +9,14 @@ prommer.net exists to win two audiences: founders/operators evaluating Thomas Pr
 - `sitemap.xml` is a sitemap **index** → 1 child → **476 URLs**. `robots.txt` and `llms.txt` present.
 - Homepage JSON-LD has 21 types (Person, Organization, PodcastSeries, VideoObject…) but **no `FAQPage`** and no `dateModified`.
 - `llms.txt` points machines at `/en/press/`, which is a **meta-refresh stub (78 chars of text)**. A crawler that doesn't follow meta-refresh sees nothing there.
-- Final run (`runs/20261002-091252/`): 11 pages frozen (51k chars). **4 of 6 answers published, 1 held after its repair round, 1 held as a real content gap.** Planted fake stat and fake expert: **both held**. Four model calls (draft, verify, repair, re-verify), all timed and costed in the run folder.
+- Final run (`runs/20261002-091252/`): 11 fetch records produced **9 frozen source files (50,081 chars)**, one HTTP 410, and one followed meta-refresh hop. **4 of 6 answers published, 1 held after its repair round, 1 held as a real content gap.** Planted fake stat and fake expert: **both held**. Four model calls (draft, verify, repair, re-verify), all timed and costed in the run folder.
 
 **The finding that matters:** the question *"Has he appeared on podcasts or spoken publicly, and on what topics?"* cannot be answered from the site. The press page lists coverage (Business Insider, HotTopics, Fast Company) but not appearances or talk topics. That is precisely what a podcast booker, one of the two named target audiences, needs. Fix pack: a `/speaking` page with appearances + topics, then add it to `llms.txt` and the FAQ.
 
 ## Run it
 
 ```bash
-python3 pipeline.py                               # live: fetch, 2 model calls, gate, publish
+python3 pipeline.py                               # live: fetch, draft + verify, optional repair, publish
 python3 pipeline.py --replay runs/20261002-091252 # re-gate recorded responses, zero model calls
 python3 grounding_gate.py --corpus runs/20261002-091252/corpus \
   --draft runs/20261002-091252/published-items.json --negative-control
@@ -34,7 +34,8 @@ MEASURE (code) → DRAFT (agent 1) → VERIFY (agent 2) → GATE (code) → [1 r
 4. **Gate** (code; the model can't argue with it): an item publishes only if (a) every number and proper noun appears in the corpus **as a whole token**, (b) it has ≥1 evidence quote and each quote is verbatim in the corpus, and (c) the verifier said `supported`. Failures get **one** repair round (draft + re-verify with the gate's reasons), then are held.
 5. **Publish**: passed items → `faq-jsonld.json` (schema.org FAQPage). Held items → `held.md` with the reason, which is the content to-do list.
 
-Every prompt, response, token count, cost and timing is saved in `runs/<ts>/{draft,verify}.json`.
+Every invoked model step saves its prompt, response, token count, cost and timing in
+`runs/<ts>/{draft,verify,repair,reverify}.json`; the repair files exist only when the gate triggers that round.
 
 ## What broke, and what I changed
 
@@ -50,8 +51,8 @@ Every prompt, response, token count, cost and timing is saved in `runs/<ts>/{dra
 - The deterministic gate checks numbers and proper nouns. A wrong *relationship* between true names ("X founded Y" when he advises Y) is caught only by the verifier, which is a model.
 - Evidence quotes must exist in the corpus, but code doesn't prove that they *entail* the answer. The corpus is pooled, so per-source provenance is lost.
 - The verifier's JSON is trusted after parsing, and prompt-injection resistance is prompt-level only (the corpus is wrapped as data, with no schema allowlist).
-- English pages only, 11 of 476 URLs, chosen by `llms.txt` + URL hints. No answer-engine "before" measurement, which is the next step: ask Perplexity/ChatGPT these same 6 questions and record whether prommer.net is cited, before and after shipping the FAQ.
+- English pages only: 9 frozen source files from 11 fetch records out of 476 discovered URLs, chosen by `llms.txt` + URL hints. No answer-engine "before" measurement, which is the next step: ask Perplexity/ChatGPT these same 6 questions and record whether prommer.net is cited, before and after shipping the FAQ.
 
 ## Reused tooling
 
-`grounding_gate.py` and the recon script come from my own assessment-prep toolkit, written before this test; I fixed the gate's substring bug during the test. The origin of the gate: in my own AEO audit tool, an unsourced attribution to a named third party once reached a paying client, who caught it. Since then I treat "named person or number with no source" as a build failure, not a style note. Built with Claude Code as the lead and Codex as an independent reviewer. `workflow.py`, `test_workflow.py` and `Makefile` in the working tree came from that Codex session and are not part of this submission.
+`grounding_gate.py` and the recon script come from my own assessment-prep toolkit, written before this test; I fixed the gate's substring bug during the test. The origin of the gate: in my own AEO audit tool, an unsourced attribution to a named third party once reached a paying client, who caught it. Since then I treat "named person or number with no source" as a build failure, not a style note. Built with Claude Code as the lead and Codex as an independent, read-only reviewer over the SecuredChat bus.
