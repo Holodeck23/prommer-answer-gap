@@ -8,10 +8,10 @@ prommer.net exists to win two audiences: founders/operators evaluating Thomas Pr
 
 - `sitemap.xml` is a sitemap **index** → 1 child → **476 URLs**. `robots.txt` and `llms.txt` present.
 - Homepage JSON-LD has 21 types (Person, Organization, PodcastSeries, VideoObject…) but **no `FAQPage`** and no `dateModified`.
-- `llms.txt` points machines at `/en/press/`, which is a **meta-refresh stub (78 chars of text)**. A crawler that doesn't follow meta-refresh sees nothing there.
-- Final run (`runs/20261002-091252/`): 11 fetch records produced **9 frozen source files (50,081 chars)**, one HTTP 410, and one followed meta-refresh hop. **4 of 6 answers published, 1 held after its repair round, 1 held as a real content gap.** Planted fake stat and fake expert: **both held**. Four model calls (draft, verify, repair, re-verify), all timed and costed in the run folder.
+- `llms.txt`, the map the site gives AI agents, links `/en/services/advisory/`, which returns **HTTP 410 Gone**, and `/en/press/`, a **meta-refresh stub (78 chars of text)**. It **never mentions the speaking page**.
+- Final run (`runs/20261002-091252/`): 11 fetch records produced **9 frozen source files (50,081 chars)**, one HTTP 410, and one followed meta-refresh hop. **4 of 6 answers published, 1 held after its repair round, 1 held as a "gap" that turned out to be my bug (break 6).** Planted fake stat and fake expert: **both held**. Four model calls (draft, verify, repair, re-verify), all timed and costed in the run folder.
 
-**The finding that matters:** the question *"Has he appeared on podcasts or spoken publicly, and on what topics?"* cannot be answered from the site. The press page lists coverage (Business Insider, HotTopics, Fast Company) but not appearances or talk topics. That is precisely what a podcast booker, one of the two named target audiences, needs. Fix pack: a `/speaking` page with appearances + topics, then add it to `llms.txt` and the FAQ.
+**The finding that matters (corrected after review):** run 4 held *"Has he appeared on podcasts or spoken publicly, and on what topics?"* as a content gap. That was wrong. `/en/press/speaking/` exists (24k chars of text, six keynote topics such as "The AI-Augmented Organization" and "From CTO to CTAIO", and a booking form with a Podcast/Webcast option). My pipeline never fetched it, because its 8-page cap filled with `llms.txt` links first. The real finding is what that bug exposed: **`llms.txt` never mentions the speaking page, and it links a page that returns 410.** An agent that trusts the site's own map for AI, as mine did, will tell a podcast booker, one of the two named target audiences, that there's nothing there. Fix pack: add `/en/press/speaking/` to `llms.txt`, swap the 410 and the redirect stub for their final URLs, re-run this pipeline, and expect q5 to publish.
 
 ## Run it
 
@@ -46,12 +46,14 @@ Every invoked model step saves its prompt, response, token count, cost and timin
 
 5. **Run 3 published copy that said "The corpus describes it as…".** Every fact was grounded, but nobody would put that sentence on a homepage. Grounded is not the same as publishable. **Fix:** a gate rule that rejects meta-language. Run 4: the repair round rewrote some answers, q4 still leaked the word after its one repair, so it was **held**, as designed. One repair, then hold; never loop until the model says what the gate wants.
 
+6. **The "gap" was mine.** After run 4, a review checked the held q5 against the live sitemap and found `/en/press/speaking/`. Cause: `picked = (llms.txt links + sitemap hint matches)[:8]`, and `llms.txt` alone supplied 8 URLs, so no sitemap match was ever fetched. A selection defect looked like a site defect. **Not fixed in code within the window:** the fix is to reserve slots for sitemap hint matches, then re-run. I'm reporting it rather than claiming a run I didn't do.
+
 ## Limits (honest)
 
 - The deterministic gate checks numbers and proper nouns. A wrong *relationship* between true names ("X founded Y" when he advises Y) is caught only by the verifier, which is a model.
 - Evidence quotes must exist in the corpus, but code doesn't prove that they *entail* the answer. The corpus is pooled, so per-source provenance is lost.
 - The verifier's JSON is trusted after parsing, and prompt-injection resistance is prompt-level only (the corpus is wrapped as data, with no schema allowlist).
-- English pages only: 9 frozen source files from 11 fetch records out of 476 discovered URLs, chosen by `llms.txt` + URL hints. No answer-engine "before" measurement, which is the next step: ask Perplexity/ChatGPT these same 6 questions and record whether prommer.net is cited, before and after shipping the FAQ.
+- English pages only: 9 frozen source files from 11 fetch records out of 476 discovered URLs, chosen by `llms.txt` + URL hints (in run 4, `llms.txt` filled all 8 slots; see break 6). No answer-engine "before" measurement, which is the next step: ask Perplexity/ChatGPT these same 6 questions and record whether prommer.net is cited, before and after shipping the FAQ.
 
 ## Reused tooling
 
