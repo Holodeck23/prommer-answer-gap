@@ -2,7 +2,7 @@
 
 **Can prommer.net answer the questions its own buyers ask, and can an agent prove it without making anything up?**
 
-prommer.net exists to win two audiences: founders/operators evaluating Thomas Prommer as a counterparty, and press/podcast bookers looking for a sharp POV on agentic operations. This pipeline asks the six questions those people actually ask, answers them **only** from the live site, has a second agent re-check every answer against the source, and lets **code, not a model**, decide what ships as `FAQPage` JSON-LD. Anything the site can't support ships as a content gap, not an answer.
+prommer.net exists to win two audiences: founders/operators evaluating Thomas Prommer as a counterparty, and press/podcast bookers looking for a sharp POV on agentic operations. This pipeline asks six questions chosen for those audiences, drafts answers from a sample of the live site, has a second agent re-check every answer against that corpus, and applies a code gate before writing `FAQPage` JSON-LD. Questions unsupported by the sampled corpus are held for investigation; that is not proof the information is absent from the site.
 
 ## Measured first (live, 2026-10-02)
 
@@ -31,8 +31,8 @@ MEASURE (code) → DRAFT (agent 1) → VERIFY (agent 2) → GATE (code) → [1 r
 1. **Measure** (`measure()`, urllib): sitemap index → child sitemaps + every page `llms.txt` links → follow meta-refresh → freeze plain text to `runs/<ts>/corpus/`. Output feeds both agents.
 2. **Draft** (agent 1, `claude -p`): gets the corpus wrapped as *untrusted data*, plus 6 buyer questions. Must return JSON with verbatim evidence quotes, or `gap: true`. No outside knowledge.
 3. **Verify** (agent 2, a separate call with a separate role prompt; it did not write the draft): re-reads the corpus and rules on each answer: supported / changed / unsupported. Same model weights, so this is a separation of roles, not independent consensus.
-4. **Gate** (code; the model can't argue with it): an item publishes only if (a) every number and proper noun appears in the corpus **as a whole token**, (b) it has ≥1 evidence quote and each quote is verbatim in the corpus, and (c) the verifier said `supported`. Failures get **one** repair round (draft + re-verify with the gate's reasons), then are held.
-5. **Publish**: passed items → `faq-jsonld.json` (schema.org FAQPage). Held items → `held.md` with the reason, which is the content to-do list.
+4. **Gate** (code): an item publishes only if (a) every number and capitalised name detected by the regex appears in the corpus **as a whole token**, (b) it has ≥1 evidence quote and each quote is verbatim in the corpus, and (c) the verifier said `supported`. Detection is heuristic: a single surname at the start of a sentence can be missed. Failures get **one** repair round (draft + re-verify with the gate's reasons), then are held.
+5. **Publish**: passed items → `faq-jsonld.json` (schema.org FAQPage). Held items → `held.md` with the reason, for retrieval or content investigation. These are repository artifacts; nothing is deployed to prommer.net.
 
 Every invoked model step saves its prompt, response, token count, cost and timing in
 `runs/<ts>/{draft,verify,repair,reverify}.json`; the repair files exist only when the gate triggers that round.
@@ -50,7 +50,7 @@ Every invoked model step saves its prompt, response, token count, cost and timin
 
 ## Limits (honest)
 
-- The deterministic gate checks numbers and proper nouns. A wrong *relationship* between true names ("X founded Y" when he advises Y) is caught only by the verifier, which is a model.
+- The deterministic gate checks regex-detected numbers and capitalised names, not every entity. It misses a single surname at the start of a sentence. A wrong *relationship* between true names ("X founded Y" when he advises Y) is caught only by the verifier, which is a model.
 - Evidence quotes must exist in the corpus, but code doesn't prove that they *entail* the answer. The corpus is pooled, so per-source provenance is lost.
 - The verifier's JSON is trusted after parsing, and prompt-injection resistance is prompt-level only (the corpus is wrapped as data, with no schema allowlist).
 - English pages only: 9 frozen source files from 11 fetch records out of 476 discovered URLs, chosen by `llms.txt` + URL hints (in run 4, `llms.txt` filled all 8 slots; see break 6). No answer-engine "before" measurement, which is the next step: ask Perplexity/ChatGPT these same 6 questions and record whether prommer.net is cited, before and after shipping the FAQ.
