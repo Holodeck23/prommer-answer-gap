@@ -1,0 +1,46 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Who is Thomas Prommer and what does he do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Thomas Prommer is a technology executive (CTO/CIO) and AI strategy consultant. He writes from practice on technology leadership and on hybrid endurance training: marathon, Ironman and HYROX. He is New York-based and works globally."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is We The Flywheel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We The Flywheel is an agentic-led, AI-first digital product and consulting studio that Prommer is part of. The site lists it as a group company, and Flywheel Motion is one of its products."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Thomas Prommer's point of view on agentic or AI-native operations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "He runs AI in production with a human in the loop and measures it against a number. In his view, agents do the heavy lifting while people own the judgment. AI supports decisions but does not make them, and it should raise the visibility of people doing real work rather than manufacture noise."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which AI products and content properties does he run?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The corpus lists these properties. Flywheel Motion is a discoverability practice and one product of We The Flywheel. ctaio.dev is a community and weekly newsletter on the CTO + CIO + AI convergence, which he founded. An \"Ask AI Tom\" feature appears on his site. He also publishes the prommer.net tech and training sections, and his site mentions aiStrategy.guide and ctocraft.com, where he has bylines or publications."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can a founder or a podcast booker contact or book him?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The corpus gives these routes: an \"Ask Tom\" page for direct questions, an Advisory page for advisory and interim engagements, and a \"Book onboarding\" page. It also has a Press page and a weekly newsletter. It does not describe a podcast-booking process or give a direct email address."
+      }
+    }
+  ]
+}

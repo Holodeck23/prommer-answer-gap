@@ -1,0 +1,15 @@
+{
+  "sitemap_urls": 1,
+  "pages": [
+    {
+      "url": "https://prommer.net/",
+      "file": "https-prommer-net.txt",
+      "chars": 15384
+    },
+    {
+      "url": "https://prommer.net/llms.txt",
+      "file": "https-prommer-net-llms-txt.txt",
+      "chars": 2533
+    }
+  ]
+}

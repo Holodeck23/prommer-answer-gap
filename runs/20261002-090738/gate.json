@@ -1,0 +1,78 @@
+[
+  {
+    "id": "q1",
+    "question": "Who is Thomas Prommer and what does he do?",
+    "text": "Thomas Prommer is a technology executive (CTO/CIO) and AI strategy consultant. He writes from practice on technology leadership and on hybrid endurance training: marathon, Ironman and HYROX. He is New York-based and works globally.",
+    "evidence": [
+      "Technology executive (CTO/CIO) and AI strategy consultant, writing from practice on technology leadership and on hybrid endurance training \u2014 marathon, Ironman and HYROX.",
+      "Technology executive & hybrid athlete. New York-based. Operating globally."
+    ],
+    "gap": false,
+    "pass": true,
+    "reasons": []
+  },
+  {
+    "id": "q2",
+    "question": "What is We The Flywheel?",
+    "text": "We The Flywheel is an agentic-led, AI-first digital product and consulting studio that Prommer is part of. The site lists it as a group company, and Flywheel Motion is one of its products.",
+    "evidence": [
+      "Flywheel Motion is one product from We The Flywheel , the agentic-led, AI-first digital product and consulting studio I'm part of.",
+      "[We The Flywheel](https://wetheflywheel.com/): Group company."
+    ],
+    "gap": false,
+    "pass": true,
+    "reasons": []
+  },
+  {
+    "id": "q3",
+    "question": "What is Thomas Prommer's point of view on agentic or AI-native operations?",
+    "text": "He runs AI in production with a human in the loop and measures it against a number. In his view, agents do the heavy lifting while people own the judgment. AI supports decisions but does not make them, and it should raise the visibility of people doing real work rather than manufacture noise.",
+    "evidence": [
+      "Agents do the heavy lifting. People own the judgment.",
+      "Human-in-the-loop. AI helps the decision. It doesn't make it.",
+      "Production-first. It runs in live environments, not demos.",
+      "use AI to raise the visibility of the people doing real work, not to manufacture noise."
+    ],
+    "gap": false,
+    "pass": true,
+    "reasons": []
+  },
+  {
+    "id": "q4",
+    "question": "Which AI products and content properties does he run?",
+    "text": "The corpus lists these properties. Flywheel Motion is a discoverability practice and one product of We The Flywheel. ctaio.dev is a community and weekly newsletter on the CTO + CIO + AI convergence, which he founded. An \"Ask AI Tom\" feature appears on his site. He also publishes the prommer.net tech and training sections, and his site mentions aiStrategy.guide and ctocraft.com, where he has bylines or publications.",
+    "evidence": [
+      "[Flywheel Motion](https://flywheelmotion.com/): Discoverability practice.",
+      "Founder at ctaio.dev Community for next-gen technology leadership",
+      "[CTAIO](https://ctaio.dev/): Weekly newsletter on the CTO + CIO + AI convergence.",
+      "Ask AI Tom \u2192"
+    ],
+    "gap": false,
+    "pass": true,
+    "reasons": []
+  },
+  {
+    "id": "q5",
+    "question": "Has he appeared on podcasts or spoken publicly, and on what topics?",
+    "text": "",
+    "evidence": [],
+    "gap": true,
+    "pass": false,
+    "reasons": [
+      "gap: site does not answer this"
+    ]
+  },
+  {
+    "id": "q6",
+    "question": "How can a founder or a podcast booker contact or book him?",
+    "text": "The corpus gives these routes: an \"Ask Tom\" page for direct questions, an Advisory page for advisory and interim engagements, and a \"Book onboarding\" page. It also has a Press page and a weekly newsletter. It does not describe a podcast-booking process or give a direct email address.",
+    "evidence": [
+      "[Ask Tom](https://prommer.net/en/ask-tom/): Direct questions.",
+      "[Advisory](https://prommer.net/en/services/advisory/): Advisory and interim engagements.",
+      "[Book onboarding](https://prommer.net/book-onboarding/)"
+    ],
+    "gap": false,
+    "pass": true,
+    "reasons": []
+  }
+]

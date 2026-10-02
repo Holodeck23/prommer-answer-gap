@@ -52,7 +52,14 @@ def measure(run: Path) -> list:
     corpus.mkdir(parents=True, exist_ok=True)
     sitemap = fetch(f"{SITE}/sitemap.xml")
     locs = re.findall(r"<loc>(.*?)</loc>", sitemap)
-    picked = [u for u in locs if PAGE_HINTS.search(u)][:6]
+    # FIX (run 1): sitemap.xml is a sitemap INDEX, so run 1 matched 0 pages. Follow child sitemaps,
+    # and take the pages llms.txt itself points machines at.
+    for child in [u for u in locs if u.endswith(".xml")]:
+        locs += re.findall(r"<loc>(.*?)</loc>", fetch(child))
+    llms = fetch(f"{SITE}/llms.txt")
+    from_llms = [u for u in re.findall(r"https://prommer\.net/[^\s)\]]+", llms)
+                 if not re.search(r"privacy|terms|sitemap|llms\.txt", u) and u != f"{SITE}/"]
+    picked = list(dict.fromkeys(from_llms + [u for u in locs if PAGE_HINTS.search(u)]))[:8]
     urls = [f"{SITE}/", f"{SITE}/llms.txt"] + picked
     pages = []
     for u in urls:
