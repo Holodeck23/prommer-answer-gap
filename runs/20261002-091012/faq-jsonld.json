@@ -1,0 +1,46 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Who is Thomas Prommer and what does he do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Thomas Prommer is a technology and AI advisor and the founder of We The Flywheel. He was previously Global SVP of Engineering at Adidas, CIO at Sweetgreen and President, Technology at Huge. He advises leaders on AI strategy, platform engineering, digital transformation and technology due diligence. He is also a hybrid athlete who runs marathons and trains for HYROX and triathlon."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is We The Flywheel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We The Flywheel is a company Thomas Prommer founded and leads as Group CEO. The corpus describes it as a global sports media network, AI consultancy and product studio. It also calls it an agentic-led, AI-first digital product and consulting studio. Flywheel Motion is one of its products."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Thomas Prommer's point of view on agentic or AI-native operations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "He treats AI as production-grade and human-led: agents do the heavy lifting while people keep the judgment. He says AI should help a decision, not make it, and every use needs a measurable number. On attribution, he says crediting outcomes over tools worked, because the responsible person owns the credit and the blame however much AI helped."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which AI products and content properties does he run?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "He is the founder of ctaio.dev, a community for next-gen technology leadership. He founded We The Flywheel, an agentic-led, AI-first digital product and consulting studio. Flywheel Motion is one product from We The Flywheel, and the site lists it as a discoverability practice. His own prommer.net site also has an Ask AI Tom feature."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can a founder or a podcast booker contact or book him?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use the contact form on prommer.net or message him on LinkedIn. The form has inquiry types including Speaking Engagement, Consulting Engagement and Press & Media. The press page invites interview and speaking inquiries to reach out directly. For advisory work, the site offers a bookable 60-minute technology advisory call. The corpus gives no podcast-specific booking route."
+      }
+    }
+  ]
+}

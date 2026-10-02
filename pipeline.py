@@ -149,6 +149,8 @@ def gate(items: list, verdicts: dict, corpus: str) -> list:
             missing = g["missing"]
             if missing:
                 reasons.append(f"ungrounded tokens: {missing}")
+            if not it.get("evidence"):  # from the Codex red-team review: empty evidence used to pass
+                reasons.append("no evidence quotes for a non-gap answer")
             for q in it.get("evidence", []):
                 if gg.normalise(q) not in corpus:
                     reasons.append(f"evidence quote not verbatim in corpus: {q[:80]!r}")
