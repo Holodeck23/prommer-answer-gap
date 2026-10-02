@@ -1,0 +1,46 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Who is Thomas Prommer and what does he do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Thomas Prommer is a technology and AI advisor and the founder of We The Flywheel. He was previously Global SVP of Engineering at Adidas, Chief Information Officer at Sweetgreen, and President, Technology at Huge. He advises leaders on AI strategy, platform engineering, digital transformation, and technology due diligence. He is also a hybrid athlete: a marathon runner who trains for HYROX and triathlon."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is We The Flywheel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We The Flywheel is an agentic-led, AI-first digital product and consulting studio that Thomas Prommer is part of. He founded it. The site also lists it as a group company. Flywheel Motion is one of its products."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Thomas Prommer's point of view on agentic or AI-native operations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "He says agents should do the heavy lifting while people keep the judgment. He runs AI in production with a human in the loop, so AI helps with decisions but doesn't make them. He also says AI shouldn't replace expertise. Every use of AI has to be measured against a number."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which AI products and content properties does he run?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "He runs Flywheel Motion, a discoverability practice, and We The Flywheel, a group company. He is founder of ctaio.dev (CTAIO), which has a weekly newsletter, a community, and the CTAIO Labs Podcast. He also has Ask AI Tom, which gives answers grounded in his published writing. His own site, prommer.net, publishes technology and training content."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can a founder or a podcast booker contact or book him?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use the contact form on prommer.net or reach him on LinkedIn. The form has inquiry types for Speaking Engagement, Press & Media, Partnership Opportunity, and Consulting Engagement. The site also offers a Schedule a Consultation option."
+      }
+    }
+  ]
+}

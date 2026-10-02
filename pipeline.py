@@ -16,6 +16,7 @@ import re
 import subprocess
 import sys
 import time
+import urllib.parse
 import urllib.request
 from pathlib import Path
 
@@ -68,6 +69,13 @@ def measure(run: Path) -> list:
         except Exception as e:  # recorded, never swallowed
             pages.append({"url": u, "error": str(e)})
             continue
+        # FIX (run 2): llms.txt points at /en/press/, which is a meta-refresh stub (78 chars of text).
+        # Follow one meta-refresh hop and record it, since crawlers that don't will see nothing.
+        hop = re.search(r'http-equiv="refresh"[^>]*url=([^"\'>]+)', raw, re.I)
+        if hop:
+            target = urllib.parse.urljoin(u, hop.group(1))
+            pages.append({"url": u, "meta_refresh_to": target})
+            u, raw = target, fetch(target)
         text = raw if u.endswith(".txt") else to_text(raw)
         name = re.sub(r"[^a-z0-9]+", "-", u.lower()).strip("-")[:80] + ".txt"
         (corpus / name).write_text(f"SOURCE: {u}\n{text}", encoding="utf-8")

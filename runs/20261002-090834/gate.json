@@ -1,0 +1,75 @@
+[
+  {
+    "id": "q1",
+    "question": "Who is Thomas Prommer and what does he do?",
+    "text": "Thomas Prommer is a technology and AI advisor and the founder of We The Flywheel. He was previously Global SVP of Engineering at Adidas, Chief Information Officer at Sweetgreen, and President, Technology at Huge. He advises leaders on AI strategy, platform engineering, digital transformation, and technology due diligence. He is also a hybrid athlete: a marathon runner who trains for HYROX and triathlon.",
+    "evidence": [
+      "Thomas Prommer is a technology and AI advisor, founder of We The Flywheel, and former Global SVP of Engineering at Adidas.",
+      "He founded We The Flywheel, where he advises leaders on AI strategy, platform engineering, digital transformation, and technology due diligence."
+    ],
+    "gap": false,
+    "pass": true,
+    "reasons": []
+  },
+  {
+    "id": "q2",
+    "question": "What is We The Flywheel?",
+    "text": "We The Flywheel is an agentic-led, AI-first digital product and consulting studio that Thomas Prommer is part of. He founded it. The site also lists it as a group company. Flywheel Motion is one of its products.",
+    "evidence": [
+      "Flywheel Motion is one product from We The Flywheel , the agentic-led, AI-first digital product and consulting studio I'm part of.",
+      "[We The Flywheel](https://wetheflywheel.com/): Group company."
+    ],
+    "gap": false,
+    "pass": true,
+    "reasons": []
+  },
+  {
+    "id": "q3",
+    "question": "What is Thomas Prommer's point of view on agentic or AI-native operations?",
+    "text": "He says agents should do the heavy lifting while people keep the judgment. He runs AI in production with a human in the loop, so AI helps with decisions but doesn't make them. He also says AI shouldn't replace expertise. Every use of AI has to be measured against a number.",
+    "evidence": [
+      "Agents do the heavy lifting. People own the judgment.",
+      "Human-in-the-loop. AI helps the decision. It doesn't make it.",
+      "The AI doesn't replace the expertise. It makes it easier to find."
+    ],
+    "gap": false,
+    "pass": true,
+    "reasons": []
+  },
+  {
+    "id": "q4",
+    "question": "Which AI products and content properties does he run?",
+    "text": "He runs Flywheel Motion, a discoverability practice, and We The Flywheel, a group company. He is founder of ctaio.dev (CTAIO), which has a weekly newsletter, a community, and the CTAIO Labs Podcast. He also has Ask AI Tom, which gives answers grounded in his published writing. His own site, prommer.net, publishes technology and training content.",
+    "evidence": [
+      "[Flywheel Motion](https://flywheelmotion.com/): Discoverability practice.",
+      "[CTAIO](https://ctaio.dev/): Weekly newsletter on the CTO + CIO + AI convergence.",
+      "Ask AI Tom \u2014 grounded answers from Thomas Prommer's published writing"
+    ],
+    "gap": false,
+    "pass": true,
+    "reasons": []
+  },
+  {
+    "id": "q5",
+    "question": "Has he appeared on podcasts or spoken publicly, and on what topics?",
+    "text": "",
+    "evidence": [],
+    "gap": true,
+    "pass": false,
+    "reasons": [
+      "gap: site does not answer this"
+    ]
+  },
+  {
+    "id": "q6",
+    "question": "How can a founder or a podcast booker contact or book him?",
+    "text": "Use the contact form on prommer.net or reach him on LinkedIn. The form has inquiry types for Speaking Engagement, Press & Media, Partnership Opportunity, and Consulting Engagement. The site also offers a Schedule a Consultation option.",
+    "evidence": [
+      "Reach Thomas through the contact form or on LinkedIn .",
+      "Speaking Engagement Advisory / Board Technical Due Diligence Partnership Opportunity Press & Media"
+    ],
+    "gap": false,
+    "pass": true,
+    "reasons": []
+  }
+]

@@ -1,0 +1,54 @@
+{
+  "sitemap_urls": 476,
+  "pages": [
+    {
+      "url": "https://prommer.net/",
+      "file": "https-prommer-net.txt",
+      "chars": 15384
+    },
+    {
+      "url": "https://prommer.net/llms.txt",
+      "file": "https-prommer-net-llms-txt.txt",
+      "chars": 2533
+    },
+    {
+      "url": "https://prommer.net/en/about/thomas-prommer/",
+      "file": "https-prommer-net-en-about-thomas-prommer.txt",
+      "chars": 6197
+    },
+    {
+      "url": "https://prommer.net/en/services/advisory/",
+      "error": "HTTP Error 410: Gone"
+    },
+    {
+      "url": "https://prommer.net/en/ask-tom/",
+      "file": "https-prommer-net-en-ask-tom.txt",
+      "chars": 214
+    },
+    {
+      "url": "https://prommer.net/en/newsletter/",
+      "file": "https-prommer-net-en-newsletter.txt",
+      "chars": 3424
+    },
+    {
+      "url": "https://prommer.net/en/tech/",
+      "file": "https-prommer-net-en-tech.txt",
+      "chars": 8240
+    },
+    {
+      "url": "https://prommer.net/en/training/",
+      "file": "https-prommer-net-en-training.txt",
+      "chars": 3320
+    },
+    {
+      "url": "https://prommer.net/book-onboarding/",
+      "file": "https-prommer-net-book-onboarding.txt",
+      "chars": 1134
+    },
+    {
+      "url": "https://prommer.net/en/press/",
+      "file": "https-prommer-net-en-press.txt",
+      "chars": 78
+    }
+  ]
+}

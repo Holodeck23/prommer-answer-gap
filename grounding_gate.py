@@ -19,7 +19,7 @@ import re
 import sys
 from pathlib import Path
 
-NUMBER = re.compile(r"(?<![\w.])\d[\d,.]*%?")
+NUMBER = re.compile(r"(?<![\w.])\d[\d,.]*(?:%|x\b)?")
 # Proper-noun run: two or more capitalised words, or one capitalised word not at sentence start.
 PROPER_RUN = re.compile(r"\b[A-Z][a-zA-Z0-9&'-]+(?:\s+[A-Z][a-zA-Z0-9&'-]+)+")
 SINGLE_CAP = re.compile(r"(?<![.!?]\s)(?<!^)\b[A-Z][a-z]{2,}[a-zA-Z0-9]*\b")
@@ -58,7 +58,10 @@ def claims(text: str) -> dict:
 
 def check(item: dict, corpus: str) -> dict:
     c = claims(item.get("text", ""))
-    missing = [x for x in c["numbers"] + c["proper_nouns"] if x not in corpus]
+    # FIX (run 2 negative control): plain substring containment let "4.3" match inside other
+    # numbers in a 60k-char corpus. Claims must now match as whole tokens, units included.
+    missing = [x for x in c["numbers"] + c["proper_nouns"]
+               if not re.search(r"(?<![\w.])" + re.escape(x) + r"(?![\w])", corpus)]
     return {"id": item.get("id"), "status": "HOLD" if missing else "PASS",
             "missing": missing, "checked": c}
 
